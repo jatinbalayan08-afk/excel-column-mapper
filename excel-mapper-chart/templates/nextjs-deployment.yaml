@@ -1,0 +1,45 @@
+# Kubernetes Deployment API version
+apiVersion: apps/v1
+
+# Resource type
+kind: Deployment
+
+# Deployment information
+metadata:
+  # Deployment name
+  name: excel-mapper
+
+# Deployment specification
+spec:
+  # Sirf 1 Next.js pod chalega
+  replicas: 1
+
+  # Deployment kis pod ko manage karega
+  selector:
+    matchLabels:
+      app: excel-mapper
+
+  # Pod template
+  template:
+    metadata:
+      labels:
+        app: excel-mapper
+
+    spec:
+      containers:
+        - name: excel-mapper
+
+          # values.yaml se Docker image lega
+          image: {{ .Values.app.image }}
+
+          # Image pull policy
+          imagePullPolicy: {{ .Values.app.imagePullPolicy }}
+
+          ports:
+            # Next.js application port
+            - containerPort: {{ .Values.app.port }}
+
+          env:
+            # Database connection string
+            - name: DATABASE_URL
+              value: "postgresql://{{ .Values.postgres.user }}:{{ .Values.postgres.password }}@postgres-service:5432/{{ .Values.postgres.database }}"

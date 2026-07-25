@@ -1,0 +1,15 @@
+postgres:
+  image: postgres:16
+  user: postgres
+  password: password
+  database: excel_mapper
+  port: 5432
+
+app:
+  image: excel-mapper:latest
+  imagePullPolicy: Never
+  port: 3000
+
+service:
+  type: NodePort
+  nodePort: 30080

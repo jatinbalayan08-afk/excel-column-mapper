@@ -1,0 +1,397 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background: #f4f7fb;
+  color: #182230;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(67, 97, 238, 0.12), transparent 35%),
+    #f4f7fb;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+.pageShell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 48px 20px;
+}
+
+.uploadCard {
+  width: min(900px, 100%);
+  padding: 42px;
+  border: 1px solid #dfe6f0;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 24px 70px rgba(25, 43, 75, 0.12);
+}
+
+.eyebrow {
+  width: fit-content;
+  margin-bottom: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eaf0ff;
+  color: #3152cc;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 650px;
+  margin-bottom: 14px;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.lead {
+  max-width: 720px;
+  margin-bottom: 32px;
+  color: #5d6979;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.fileGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.fileField {
+  display: flex;
+  min-height: 190px;
+  flex-direction: column;
+  gap: 9px;
+  justify-content: center;
+  padding: 22px;
+  border: 1px dashed #aab8cc;
+  border-radius: 16px;
+  background: #fafcff;
+  cursor: pointer;
+  transition: border-color 140ms ease, transform 140ms ease;
+}
+
+.fileField:hover {
+  border-color: #4361ee;
+  transform: translateY(-1px);
+}
+
+.fileField span {
+  font-weight: 800;
+}
+
+.fileField small {
+  min-height: 36px;
+  color: #667386;
+  line-height: 1.45;
+}
+
+.fileField input {
+  width: 100%;
+  margin: 8px 0;
+}
+
+.fileField strong {
+  overflow: hidden;
+  color: #3152cc;
+  font-size: 0.9rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.primaryButton,
+.secondaryButton {
+  border-radius: 10px;
+  padding: 11px 17px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.primaryButton {
+  background: #3152cc;
+  color: #fff;
+}
+
+.secondaryButton {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #334155;
+}
+
+.primaryButton:hover:not(:disabled),
+.secondaryButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.uploadButton {
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px 20px;
+}
+
+.environmentNote {
+  margin: 18px 0 0;
+  color: #667386;
+  font-size: 0.84rem;
+  text-align: center;
+}
+
+.environmentNote code {
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: #eef2f7;
+}
+
+.errorMessage {
+  margin-top: 18px;
+  padding: 13px 15px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fff1f2;
+  color: #b42318;
+  font-weight: 650;
+}
+
+.modalOverlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.68);
+  backdrop-filter: blur(5px);
+}
+
+.modalPanel {
+  width: min(1180px, 96vw);
+  height: min(850px, 92vh);
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.3);
+}
+
+.flowEditor {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+}
+
+.flowToolbar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.flowToolbar h2 {
+  margin-bottom: 4px;
+  font-size: 1.25rem;
+}
+
+.flowToolbar p {
+  margin-bottom: 0;
+  color: #667386;
+  font-size: 0.88rem;
+}
+
+.flowActions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.mappingCount {
+  margin-right: 5px;
+  color: #667386;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.columnHeadings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px 13%;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.columnHeadings strong:last-child {
+  text-align: right;
+}
+
+.flowSurface {
+  height: 600px;
+  width: 100%;
+}
+
+.mappingNode {
+  min-width: 190px;
+  max-width: 240px;
+  padding: 12px 16px;
+  overflow: hidden;
+  border: 1px solid #94a3b8;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(15, 23, 42, 0.08);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mappingNodeSource {
+  border-left: 4px solid #3152cc;
+}
+
+.mappingNodeTarget {
+  border-right: 4px solid #0f9f79;
+}
+
+.react-flow__handle {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #fff;
+  background: #3152cc;
+}
+
+.mappingNodeTarget .react-flow__handle {
+  background: #0f9f79;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke-width: 3;
+}
+
+@media (max-width: 760px) {
+  .uploadCard {
+    padding: 26px 20px;
+  }
+
+  .fileGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalOverlay {
+    padding: 0;
+  }
+
+  .modalPanel {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .flowToolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .flowActions {
+    flex-wrap: wrap;
+  }
+}
+
+/* Permanent AI-suggestion edges stay behind the editable mappings. */
+.originalMappingEdge {
+  pointer-events: none;
+}
+.saveModal{
+  width: 450px;
+  background: white;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+}
+
+.saveModal h2{
+  margin:0;
+  font-size:28px;
+  color:#1e293b;
+}
+
+.saveSubtitle{
+  margin-top:8px;
+  color:#64748b;
+  font-size:15px;
+}
+
+.saveField{
+  margin-top:24px;
+}
+
+.saveField label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:600;
+  color:#334155;
+}
+
+.saveField input{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  font-size:16px;
+  outline:none;
+  transition:.2s;
+}
+
+.saveField input:focus{
+  border-color:#2563eb;
+  box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+
+.saveActions{
+  display:flex;
+  justify-content:flex-end;
+  gap:12px;
+  margin-top:28px;
+}

@@ -1,0 +1,50 @@
+# Deployment API version
+apiVersion: apps/v1
+
+# Resource type
+kind: Deployment
+
+# Deployment information
+metadata:
+  # Deployment name
+  name: postgres
+
+# Deployment specification
+spec:
+  # Sirf 1 PostgreSQL pod chalega
+  replicas: 1
+
+  # Deployment kis pod ko manage karega
+  selector:
+    matchLabels:
+      app: postgres
+
+  # Pod template
+  template:
+    metadata:
+      labels:
+        app: postgres
+
+    spec:
+      containers:
+        - name: postgres
+
+          # values.yaml se PostgreSQL image lega
+          image: {{ .Values.postgres.image }}
+
+          ports:
+            # PostgreSQL port
+            - containerPort: {{ .Values.postgres.port }}
+
+          env:
+            # Database username
+            - name: POSTGRES_USER
+              value: {{ .Values.postgres.user | quote }}
+
+            # Database password
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.password | quote }}
+
+            # Database name
+            - name: POSTGRES_DB
+              value: {{ .Values.postgres.database | quote }}

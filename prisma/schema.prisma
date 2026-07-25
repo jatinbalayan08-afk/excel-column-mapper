@@ -1,0 +1,23 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Mapping {
+  id        Int      @id @default(autoincrement())
+  sourceId  String
+  targetId  String
+  createdAt DateTime @default(now())
+}
+model SavedFile {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  fileName  String
+  fileData  Bytes
+  createdAt DateTime @default(now())
+}

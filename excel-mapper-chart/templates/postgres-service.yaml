@@ -1,0 +1,29 @@
+# Kubernetes Service API version
+apiVersion: v1
+
+# Resource type
+kind: Service
+
+# Service information
+metadata:
+  # Service name
+  name: postgres-service
+
+# Service specification
+spec:
+
+  # Ye service postgres label wale pod ko connect karegi
+  selector:
+    app: postgres
+
+  # Port configuration
+  ports:
+    # Service port
+    - port: {{ .Values.postgres.port }}
+
+      # Pod ke andar PostgreSQL kis port par chal raha hai
+      targetPort: {{ .Values.postgres.port }}
+
+  # Sirf cluster ke andar accessible hogi
+  type: ClusterIP
+  

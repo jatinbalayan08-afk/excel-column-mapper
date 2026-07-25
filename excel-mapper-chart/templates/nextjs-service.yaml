@@ -1,0 +1,31 @@
+# Kubernetes Service API version
+apiVersion: v1
+
+# Resource type
+kind: Service
+
+# Service information
+metadata:
+  # Service name
+  name: excel-mapper-service
+
+# Service specification
+spec:
+
+  # Ye service excel-mapper label wale pod ko target karegi
+  selector:
+    app: excel-mapper
+
+  # Service type values.yaml se lega
+  type: {{ .Values.service.type }}
+
+  # Port configuration
+  ports:
+    # Service port
+    - port: {{ .Values.app.port }}
+
+      # Pod ke andar Next.js kis port par chal rahi hai
+      targetPort: {{ .Values.app.port }}
+
+      # Browser se access karne ke liye fixed NodePort
+      nodePort: {{ .Values.service.nodePort }}
