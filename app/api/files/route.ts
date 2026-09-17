@@ -1,13 +1,18 @@
 import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
-
-const FAKE_USER_ID = "user-123"; 
 
 export async function GET() {
   try {
+    const { userId } = await auth();
+
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const files = await prisma.savedFile.findMany({
       where: {
-        userId: FAKE_USER_ID,
+        userId: userId,
       },
       orderBy: {
         createdAt: "desc",
@@ -15,7 +20,7 @@ export async function GET() {
       select: {
         id: true,
         fileName: true,
-        createdAt: true,  
+        createdAt: true,
       },
     });
 
